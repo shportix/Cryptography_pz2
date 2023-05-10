@@ -9,12 +9,12 @@ class MyBigInt:
     def getBin(self):
         first = True
         bin_num = ""
-        for num in self.__number:
-            num = bin(num)[2:]
+        for _num in self.__number:
+            _num = bin(_num)[2:]
             if not first:
-                if len(num) < 32:
-                    num = "0"*(32-len(num)) + num
-            bin_num += num
+                if len(_num) < 32:
+                    _num = "0"*(32-len(_num)) + _num
+            bin_num += _num
             first = False
         return bin_num
 
@@ -27,19 +27,19 @@ class MyBigInt:
             if len(bin_num) % 32 != 0:
                 bin_num = "0" * (32 - len(bin_num) % 32) + bin_num
             while bin_num != "":
-                num = int(bin_num[:32], 2)
+                _num = int(bin_num[:32], 2)
                 if len(bin_num) > 32:
                     bin_num = bin_num[32:]
                 else:
                     bin_num = ""
-                if first and (num == 0):
+                if first and (_num == 0):
                     continue
-                self.__number.append(num)
+                self.__number.append(_num)
                 first = False
 
-    def setHex(self, hex_number: str):
+    def setHex(self, hex__number: str):
         self.__number = []
-        hex_number.lower()
+        hex__number.lower()
         hex_to_dec = {
             "0": 0,
             "1": 1,
@@ -58,20 +58,20 @@ class MyBigInt:
             "e": 14,
             "f": 15
         }
-        while len(hex_number) > 8:
+        while len(hex__number) > 8:
             i = 0
-            num = 0
-            for char in hex_number[:-9:-1]:
-                num += hex_to_dec[char] * pow(16, i)
+            _num = 0
+            for char in hex__number[:-9:-1]:
+                _num += hex_to_dec[char] * pow(16, i)
                 i += 1
-            self.__number = [num] + self.__number
-            hex_number = hex_number[:-8]
+            self.__number = [_num] + self.__number
+            hex__number = hex__number[:-8]
         i = 0
-        num = 0
-        for char in hex_number[::-1]:
-            num += hex_to_dec[char] * pow(16, i)
+        _num = 0
+        for char in hex__number[::-1]:
+            _num += hex_to_dec[char] * pow(16, i)
             i += 1
-        self.__number = [num] + self.__number
+        self.__number = [_num] + self.__number
 
     def getHex(self):
         dec_to_hex = {
@@ -93,11 +93,11 @@ class MyBigInt:
             15: "f"
         }
         hex_num = ""
-        for num in self.__number:
+        for _num in self.__number:
             hex_block = ""
-            while num != 0:
-                hex_block = dec_to_hex[num % 16] + hex_block
-                num = num // 16
+            while _num != 0:
+                hex_block = dec_to_hex[_num % 16] + hex_block
+                _num = _num // 16
             if len(hex_block) < 8:
                 hex_block = "0" * (8 - len(hex_block)) + hex_block
             hex_num += hex_block
@@ -114,32 +114,32 @@ class MyBigInt:
     def get_num(self):
         return self.__number
 
-    def set_num(self, num: list):
-        self.__number = num
+    def set_num(self, _num: list):
+        self.__number = _num
 
     def INV(self):
-        new_number = []
+        new__number = []
         first = True
-        for num in self.__number:
-            num = bin(num)[2:]
+        for _num in self.__number:
+            _num = bin(_num)[2:]
             if not first:
-                if len(num) < 32:
-                    num = "0"*(32-len(num)) + num
+                if len(_num) < 32:
+                    _num = "0"*(32-len(_num)) + _num
             new_num = ""
-            for bit in num:
+            for bit in _num:
                 if bit == "0":
                     new_num += "1"
                 else:
                     new_num += "0"
             new_num = int(new_num, 2)
-            new_number.append(new_num)
+            new__number.append(new_num)
             first = False
-        self.__number = new_number
+        self.__number = new__number
 
     @staticmethod
-    def XOR(num1, num2):
-        bin_num1 = num1.getBin()
-        bin_num2 = num2.getBin()
+    def XOR(_num1, _num2):
+        bin_num1 = _num1.getBin()
+        bin_num2 = _num2.getBin()
         if len(bin_num1) > len(bin_num2):
             bin_num2 = "0"*(len(bin_num1)-len(bin_num2)) + bin_num2
         elif len(bin_num2) > len(bin_num1):
@@ -150,14 +150,14 @@ class MyBigInt:
                 bin_num_res += "0"
             else:
                 bin_num_res += "1"
-        num_res = MyBigInt()
-        num_res.setBin(bin_num_res)
-        return num_res
+        _num_res = MyBigInt()
+        _num_res.setBin(bin_num_res)
+        return _num_res
 
     @staticmethod
-    def AND(num1, num2):
-        bin_num1 = num1.getBin()
-        bin_num2 = num2.getBin()
+    def AND(_num1, _num2):
+        bin_num1 = _num1.getBin()
+        bin_num2 = _num2.getBin()
         if len(bin_num1) > len(bin_num2):
             bin_num2 = "0"*(len(bin_num1)-len(bin_num2)) + bin_num2
         elif len(bin_num2) > len(bin_num1):
@@ -168,14 +168,14 @@ class MyBigInt:
                 bin_num_res += "1"
             else:
                 bin_num_res += "0"
-        num_res = MyBigInt()
-        num_res.setBin(bin_num_res)
-        return num_res
+        _num_res = MyBigInt()
+        _num_res.setBin(bin_num_res)
+        return _num_res
 
     @staticmethod
-    def OR(num1, num2):
-        bin_num1 = num1.getBin()
-        bin_num2 = num2.getBin()
+    def OR(_num1, _num2):
+        bin_num1 = _num1.getBin()
+        bin_num2 = _num2.getBin()
         if len(bin_num1) > len(bin_num2):
             bin_num2 = "0" * (len(bin_num1) - len(bin_num2)) + bin_num2
         elif len(bin_num2) > len(bin_num1):
@@ -186,9 +186,9 @@ class MyBigInt:
                 bin_num_res += "0"
             else:
                 bin_num_res += "1"
-        num_res = MyBigInt()
-        num_res.setBin(bin_num_res)
-        return num_res
+        _num_res = MyBigInt()
+        _num_res.setBin(bin_num_res)
+        return _num_res
 
     def shiftR(self, n):
         bin_num = self.getBin()
@@ -204,80 +204,80 @@ class MyBigInt:
         self.setBin(bin_num)
 
     @staticmethod
-    def ADD(num1, num2):
-        num1 = num1.get_num()
-        num2 = num2.get_num()
-        if len(num1) > len(num2):
-            num2 = [0] * (len(num1) - len(num2)) + num2
-        elif len(num2) > len(num1):
-            num1 = [0] * (len(num2) - len(num1)) + num1
+    def ADD(_num1, _num2):
+        _num1 = _num1.get_num()[:]
+        _num2 = _num2.get_num()[:]
+        if len(_num1) > len(_num2):
+            _num2 = [0] * (len(_num1) - len(_num2)) + _num2
+        elif len(_num2) > len(_num1):
+            _num1 = [0] * (len(_num2) - len(_num1)) + _num1
         buf = 0
-        for i in range(len(num1)-1,-1,-1):
-            num = num1[i] + num2[i] + buf
-            if num >= MyBigInt.__base:
-                num = num % MyBigInt.__base
+        for i in range(len(_num1)-1,-1,-1):
+            _num = _num1[i] + _num2[i] + buf
+            if _num >= MyBigInt.__base:
+                _num = _num % MyBigInt.__base
                 buf = 1
             else:
                 buf = 0
-            num1[i] = num
+            _num1[i] = _num
         if buf == 1:
-            num1 = [1] + num1
-        num2 = MyBigInt()
-        num2.set_num(num1)
-        return num2
+            _num1 = [1] + _num1
+        _num2 = MyBigInt()
+        _num2.set_num(_num1)
+        return _num2
 
     @staticmethod
-    def SUB(num1, num2):
-        num1 = num1.get_num()
-        num2 = num2.get_num()
-        if len(num1) > len(num2):
-            num2 = [0] * (len(num1) - len(num2)) + num2
+    def SUB(_num1, _num2):
+        _num1 = _num1.get_num()[:]
+        _num2 = _num2.get_num()[:]
+        if len(_num1) > len(_num2):
+            _num2 = [0] * (len(_num1) - len(_num2)) + _num2
         buf = 0
-        for i in range(len(num1) - 1, -1, -1):
-            num1[i] = num1[i] + buf
-            if num1[i] < num2[i]:
-                num1[i] = num1[i] + MyBigInt.__base - num2[i]
+        for i in range(len(_num1) - 1, -1, -1):
+            _num1[i] = _num1[i] + buf
+            if _num1[i] < _num2[i]:
+                _num1[i] = _num1[i] + MyBigInt.__base - _num2[i]
                 buf = -1
             else:
-                num1[i] -= num2[i]
+                _num1[i] -= _num2[i]
                 buf = 0
-        num2 = MyBigInt()
-        num2.set_num(num1)
-        return num2
+        _num2 = MyBigInt()
+        _num2.set_num(_num1)
+        return _num2
 
-    def is_bigger(self, num):
-        num = num.get_num()
-        if len(self.__number) > len(num):
+    def is_bigger(self, _num):
+        _num = _num.get_num()[:]
+        if len(self.__number) > len(_num):
             return True
-        if len(self.__number) < len(num):
+        if len(self.__number) < len(_num):
             return False
-        for a, b in zip(self.__number, num):
+        for a, b in zip(self.__number, _num):
             if a < b:
                 return False
             if a > b:
                 return True
         return False
 
-    def equal(self, num):
-        num = num.get_num()
-        if len(self.__number) > len(num):
+    def equal(self, _num):
+        _num = _num.get_num()[:]
+        if len(self.__number) > len(_num):
             return False
-        if len(self.__number) < len(num):
+        if len(self.__number) < len(_num):
             return False
-        for a, b in zip(self.__number, num):
+        for a, b in zip(self.__number, _num):
             if a < b:
                 return False
             if a > b:
                 return False
         return True
 
-    def is_lower(self, num):
-        num = num.get_num()
-        if len(self.__number) > len(num):
+    def is_lower(self, _num):
+        _num = _num.get_num()[:]
+        if len(self.__number) > len(_num):
             return False
-        if len(self.__number) < len(num):
+        if len(self.__number) < len(_num):
             return True
-        for a, b in zip(self.__number, num):
+        for a, b in zip(self.__number, _num):
             if a < b:
                 return True
             if a > b:
@@ -285,98 +285,102 @@ class MyBigInt:
         return False
 
     # @staticmethod
-    # def MUL(num1, num2):
-    #     if len(num1.get_num()) < len(num2.get_num()):
-    #         num1, num2 = num2, num1
-    #     if len(num2.get_num()) == 1:
-    #         num1 = num1.get_num()
-    #         num2 = num2.get_num()[0]
+    # def MUL(_num1, _num2):
+    #     if len(_num1.get_num()) < len(_num2.get_num()):
+    #         _num1, _num2 = _num2, _num1
+    #     if len(_num2.get_num()) == 1:
+    #         _num1 = _num1.get_num()
+    #         _num2 = _num2.get_num()[0]
     #         buf = 0
-    #         for i in range(len(num1)-1,-1,-1):
-    #             num = num1[i] * num2
-    #             num1[i] = num % MyBigInt.__base + buf
-    #             buf = num // MyBigInt.__base
-    #         num2 = MyBigInt()
-    #         num2.set_num(num1)
-    #         return num2
-    #     m = len(num1.get_num()) // 2
-    #     a1, b1 = num1.get_num()[:m], num1.get_num()[m:]
-    #     if len(num2.get_num()) <= m:
-    #         a2, b2 = [0], num2.get_num()
+    #         for i in range(len(_num1)-1,-1,-1):
+    #             _num = _num1[i] * _num2
+    #             _num1[i] = _num % MyBigInt.__base + buf
+    #             buf = _num // MyBigInt.__base
+    #         _num2 = MyBigInt()
+    #         _num2.set_num(_num1)
+    #         return _num2
+    #     m = len(_num1.get_num()) // 2
+    #     a1, b1 = _num1.get_num()[:m], _num1.get_num()[m:]
+    #     if len(_num2.get_num()) <= m:
+    #         a2, b2 = [0], _num2.get_num()
     #     else:
-    #         a2, b2 = num2.get_num()[:(len(num2.get_num())-m)], num2.get_num()[(len(num2.get_num())-m):]
-    #     num_a1 = MyBigInt()
-    #     num_a2 = MyBigInt()
-    #     num_b1 = MyBigInt()
-    #     num_b2 = MyBigInt()
-    #     num_a1.set_num(a1)
-    #     num_a2.set_num(a2)
-    #     num_b1.set_num(b1)
-    #     num_b2.set_num(b2)
-    #     z0 = MyBigInt.MUL(num_b1, num_b2)
-    #     z1 = MyBigInt.MUL(MyBigInt.ADD(num_a1, num_b1), MyBigInt.ADD(num_a2, num_b2))
-    #     z2 = MyBigInt.MUL(num_a1, num_a2)
+    #         a2, b2 = _num2.get_num()[:(len(_num2.get_num())-m)], _num2.get_num()[(len(_num2.get_num())-m):]
+    #     _num_a1 = MyBigInt()
+    #     _num_a2 = MyBigInt()
+    #     _num_b1 = MyBigInt()
+    #     _num_b2 = MyBigInt()
+    #     _num_a1.set_num(a1)
+    #     _num_a2.set_num(a2)
+    #     _num_b1.set_num(b1)
+    #     _num_b2.set_num(b2)
+    #     z0 = MyBigInt.MUL(_num_b1, _num_b2)
+    #     z1 = MyBigInt.MUL(MyBigInt.ADD(_num_a1, _num_b1), MyBigInt.ADD(_num_a2, _num_b2))
+    #     z2 = MyBigInt.MUL(_num_a1, _num_a2)
     #     a = [1] + [0] * m * 2
-    #     num = MyBigInt()
-    #     num.set_num(a)
-    #     a = num
+    #     _num = MyBigInt()
+    #     _num.set_num(a)
+    #     a = _num
     #     b = [1] + [0] * m
-    #     num = MyBigInt()
-    #     num.set_num(b)
-    #     b = num
+    #     _num = MyBigInt()
+    #     _num.set_num(b)
+    #     b = _num
     #     return MyBigInt.ADD(MyBigInt.ADD(MyBigInt.MUL(z2, a), MyBigInt.MUL(MyBigInt.SUB(MyBigInt.SUB(z1, z2), z0), b)), z0)
 
     @staticmethod
-    def MOD(num1, num2):
-        if num1.equal(num2):
+    def MOD(_num1, _num2):
+        if _num1.equal(_num2):
             return MyBigInt().set_num([0])
-        while num1.is_bigger(num2) or num1.equal(num2):
-            num1 = MyBigInt.SUB(num1, num2)
-        return num1
+        while _num1.is_bigger(_num2) or _num1.equal(_num2):
+            _num1 = MyBigInt.SUB(_num1, _num2)
+        return _num1
 
 
 
 
 if __name__ == '__main__':
-    num1 = MyBigInt()
-    num2 = MyBigInt()
-    num3 = MyBigInt()
-    num1.setHex("51bf608414ad5726a3c1bec098f77b1b54ffb2787f8d528a74c1d7fde6470ea4")
-    num2.setHex("403db8ad88a3932a0b7e8189aed9eeffb8121dfac05c3512fdb396dd73f6331c")
+    num11 = MyBigInt()
+    num21 = MyBigInt()
+    num31 = MyBigInt()
+    num11.setHex("51bf608414ad5726a3c1bec098f77b1b54ffb2787f8d528a74c1d7fde6470ea4")
+    num21.setHex("403db8ad88a3932a0b7e8189aed9eeffb8121dfac05c3512fdb396dd73f6331c")
     print("getHex")
-    print(num1.getHex())
-    print(num2.getHex())
-    num3 = MyBigInt.XOR(num1, num2)
+    print(num11.getHex())
+    print(num21.getHex())
+    num31 = MyBigInt.XOR(num11, num21)
     print("XOR")
-    print(num3.getHex())
-    num3 = MyBigInt.OR(num1, num2)
+    print(num31.getHex())
+    num31 = MyBigInt.OR(num11, num21)
     print("OR")
-    print(num3.getHex())
-    num3.INV()
+    print(num31.getHex())
+    num31.INV()
     print("INV")
-    print(num3.getHex())
-    num3 = MyBigInt.AND(num1, num2)
+    print(num31.getHex())
+    num31 = MyBigInt.AND(num11, num21)
     print("AND")
-    print(num3.getHex())
-    num3.shiftR(3)
+    print(num31.getHex())
+    num31.shiftR(3)
     print("shiftR")
-    print(num3.getHex())
-    num3.shiftL(5)
+    print(num31.getHex())
+    num31.shiftL(5)
     print("shiftL")
-    print(num3.getHex())
-    num1.setHex("36f028580bb02cc8272a9a020f4200e346e276ae664e45ee80745574e2f5ab80")
-    num2.setHex("70983d692f648185febe6d6fa607630ae68649f7e6fc45b94680096c06e4fadb")
-    num3 = MyBigInt.ADD(num1, num2)
+    print(num31.getHex())
+    num11.setHex("36f028580bb02cc8272a9a020f4200e346e276ae664e45ee80745574e2f5ab80")
+    num21.setHex("70983d692f648185febe6d6fa607630ae68649f7e6fc45b94680096c06e4fadb")
+    num31 = MyBigInt.ADD(num11, num21)
     print("ADD")
-    print(num3.getHex())
-    num1.setHex("33ced2c76b26cae94e162c4c0d2c0ff7c13094b0185a3c122e732d5ba77efebc")
-    num2.setHex("22e962951cb6cd2ce279ab0e2095825c141d48ef3ca9dabf253e38760b57fe03")
-    num3 = MyBigInt.SUB(num1, num2)
+    print(num31.getHex())
+    num11.setHex("33ced2c76b26cae94e162c4c0d2c0ff7c13094b0185a3c122e732d5ba77efebc")
+    num21.setHex("22e962951cb6cd2ce279ab0e2095825c141d48ef3ca9dabf253e38760b57fe03")
+    num31 = MyBigInt.SUB(num11, num21)
     print("SUB")
-    print(num3.getHex())
-    num3 = MyBigInt.MOD(num1, num2)
+    print(num31.getHex())
+    num21.setHex("1")
+    num21 = MyBigInt.ADD(num11, num21)
+    num21 = MyBigInt.ADD(num11, num21)
     print("MOD")
-    print(num3.getHex())
+    num31 = MyBigInt.MOD(num21, num11)
+    print(num21.getHex())
+    print(num31.getHex())
 
 
 
