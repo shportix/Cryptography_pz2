@@ -7,6 +7,8 @@ class MyBigInt:
         self.__number = [0]
 
     def getBin(self):
+        if self.__number == [0]:
+            return "0"
         first = True
         bin_num = ""
         for num in self.__number:
@@ -92,6 +94,8 @@ class MyBigInt:
             14: "e",
             15: "f"
         }
+        if self.__number == [0]:
+            return "0"
         hex_num = ""
         for num in self.__number:
             hex_block = ""
@@ -471,7 +475,6 @@ if __name__ == '__main__':
     num21 = MyBigInt.ADD(num11, num21)
     print("MOD")
     num31 = MyBigInt.MOD(num21, num11)
-    print(num21.getHex())
     print(num31.getHex())
     num11.setHex("7d7deab2affa38154326e96d350deee1")
     num21.setHex("97f92a75b3faf8939e8e98b96476fd22")
@@ -479,8 +482,11 @@ if __name__ == '__main__':
     num31 = MyBigInt.MUL(num11, num21)
     print(num31.getHex())
     print("DIV")
-    num31 = MyBigInt.DIV(num31, num11)
-    print(num31.getHex())
+    num21 = MyBigInt.DIV(num31, num11)
+    print(num21.getHex())
+    print("MOD")
+    num21 = MyBigInt.MOD(num31, num11)
+    print(num21.getHex())
 
 
 
