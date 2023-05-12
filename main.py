@@ -432,6 +432,25 @@ class MyBigInt:
             buf = MyBigInt.SUB(buf, number_composition)
         return buf
 
+    @staticmethod
+    def POWMOD(base, exponent, modulus):
+        if exponent == 0:
+            buf = MyBigInt()
+            buf.set_num([1])
+            return buf
+        if exponent == 1:
+            return MyBigInt.MOD(base, modulus)
+        if exponent % 2 == 0:
+            num_res = MyBigInt.POWMOD(base, exponent // 2, modulus)
+            num_res = MyBigInt.MUL(num_res, num_res)
+            num_res = MyBigInt.MOD(num_res, modulus)
+            return num_res
+        num_a = MyBigInt.POWMOD(base, exponent-1, modulus)
+        num_b = MyBigInt.MOD(base, modulus)
+        num_res = MyBigInt.MUL(num_a, num_b)
+        num_res = MyBigInt.MOD(num_res, modulus)
+        return num_res
+
 
 if __name__ == '__main__':
     num11 = MyBigInt()
